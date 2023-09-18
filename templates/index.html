@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram 抽獎工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Instagram 抽獎工具</h2>
+        <form method="post">
+            <div>
+                <label for="username">Instagram 帳號：</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <br>
+            <div>
+                <label for="password">Instagram 密碼：</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <br>
+            <div>
+                <label for="post_URL">貼文網址：</label>
+                <input type="text" id="post_URL" name="post_URL" required>
+            </div>
+            <br>
+            <div>
+                <label for="specified_comment">指定留言：</label>
+                <input type="text" id="specified_comment" name="specified_comment" required>
+            </div>
+            <br>
+            <div>
+                <label for="winner_num">抽獎總人數：</label>
+                <input type="number" id="winner_num" name="winner_num" min="1" required>
+            </div>
+            <br>
+            <button type="submit">開始抽獎</button>
+        </form>
+
+        {% if total_comments and match_comments %}
+            <p>該篇貼文中共有{{ total_comments }}則留言</p>
+            <p>其中符合留言條件的有{{ match_comments }}則留言</p>
+        {% endif %}
+
+        {% if winners %}
+            <h2>抽獎結果</h2>
+            <ul>
+                {% for winner in winners %}
+                    <li>{{ winner.username }}: "{{ winner.text }}"</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
