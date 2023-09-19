@@ -60,5 +60,5 @@ def scrape(cl, post_URL, specified_comment, winner_num):
     }
 
 if __name__ == '__main__':
-    os.getenv('PORT')
     #app.run(port=8088, debug=True)
+    app.run(os.getenv('PORT'))
